@@ -21,14 +21,14 @@
 
 import { Devvit, SettingScope } from '@devvit/public-api';
 
-// TruthScan "detect image by public URL" Cloudflare Worker (truthscan-detect-url-worker).
-// Swap for a branded domain (e.g. https://detect-url.truthscan.com) once the route is set up.
-const DETECT_URL = 'https://truthscan-detect-url.bjuhasz08.workers.dev';
+// TruthScan "detect image by public URL" Cloudflare Worker (truthscan-detect-url-worker),
+// served on a branded, Reddit-allowlistable domain.
+const DETECT_URL = 'https://detect-url.truthscans.com';
 
 // The Worker host must be allowlisted here for fetch() to work in the sandbox.
 Devvit.configure({
   redditAPI: true,
-  http: { domains: ['truthscan-detect-url.bjuhasz08.workers.dev'] },
+  http: { domains: ['detect-url.truthscans.com'] },
 });
 
 Devvit.addSettings([
