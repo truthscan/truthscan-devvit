@@ -1,0 +1,3 @@
+# Classic Devvit app manifest. `name` must be globally unique across Reddit —
+# pick an available one when you first run `devvit upload` (it will prompt/validate).
+name: truthscan-ai-detector
