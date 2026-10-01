@@ -14,14 +14,11 @@ approval and no commercial contract** — so it sidesteps that wall.
   install it. It is NOT globally summonable by any user in any subreddit (that's
   what the rejected Data API bot would have done).
 - **Domain allowlist.** Devvit sandboxes `fetch()` to approved domains. This app
-  currently needs: `detect-image.truthscan.com`, the storage host
-  `ai-image-detector-prod.nyc3.digitaloceanspaces.com`, and `i.redd.it` (to read
-  the image). Reddit must approve these — self-hosted/storage hosts are the ones
-  most likely to be refused.
-  - **Strongly recommended:** add a **"detect by public image URL"** endpoint on
-    TruthScan (download + detect server-side, return the verdict). Then this app
-    calls a *single* host and the upload code in `src/main.tsx` goes away —
-    simpler and far more likely to pass Devvit's allowlist review.
+  now calls a **single host** — the TruthScan detect-by-URL Cloudflare Worker
+  (`truthscan-detect-url.bjuhasz08.workers.dev`, repo `truthscan-detect-url-worker`).
+  The Worker downloads the image and runs detection server-side, so Devvit never
+  touches the storage host or `i.redd.it` directly. Allowlist just that one host
+  (swap for a branded `detect-url.truthscan.com` once the route is set up).
 
 ## Setup
 ```bash
