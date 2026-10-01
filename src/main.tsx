@@ -25,7 +25,11 @@ import { Devvit, SettingScope } from '@devvit/public-api';
 // Swap for a branded domain (e.g. https://detect-url.truthscan.com) once the route is set up.
 const DETECT_URL = 'https://truthscan-detect-url.bjuhasz08.workers.dev';
 
-Devvit.configure({ redditAPI: true, http: true });
+// The Worker host must be allowlisted here for fetch() to work in the sandbox.
+Devvit.configure({
+  redditAPI: true,
+  http: { domains: ['truthscan-detect-url.bjuhasz08.workers.dev'] },
+});
 
 Devvit.addSettings([
   {
